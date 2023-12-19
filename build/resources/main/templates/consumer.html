@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Warehouse Consumer View</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: '/warehouse/001/data',
+                type: 'GET',
+                success: function(data) {
+                    $('#warehouseDetailsTable').append('<tr><td>Name</td><td>' + data.warehouseName + '</td></tr>');
+                    $('#warehouseDetailsTable').append('<tr><td>Location</td><td>' + data.warehouseLocation + '</td></tr>');
+                    $('#warehouseDetailsTable').append('<tr><td>Storage</td><td>' + data.warehouseStorage + '</td></tr>');
+                    $('#warehouseDetailsTable').append('<tr><td>Parking Slots</td><td>' + data.warehouseParkingSlots + '</td></tr>');
+                    $('#warehouseDetailsTable').append('<tr><td>Availability</td><td>' + (data.warehouseAvaibility ? 'Yes' : 'No') + '</td></tr>');
+
+                    data.productData.forEach(function(product) {
+                        $('#productsTable').append('<tr><td>' + product.productID + '</td><td>' + product.productName + '</td><td>' + product.productCategory + '</td><td>' + product.productPrice.toFixed(2) + '€</td><td>' + product.productStock + '</td><td>' + product.productExpiryDate + '</td><td>' + (product.productAvailability ? 'Available' : 'Not Available') + '</td></tr>');
+                    });
+                },
+                error: function() {
+                    $('#warehouseDetails').append('<p> Fehler beim Laden der Daten! </p>');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Consumer-View</h1>
+<table id="warehouseDetailsTable">
+</table>
+<h2>Products</h2>
+<table id="productsTable">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Expiry Date</th>
+        <th>Availability</th>
+    </tr>
+</table>
+</body>
+</html>

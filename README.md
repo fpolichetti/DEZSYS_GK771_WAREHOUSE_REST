@@ -1,2 +1,8 @@
-# DEZSYS_GK771_WAREHOUSE_REST
-DEZSYS_GK771_WAREHOUSE_REST
+# Middleware Engineering "Distributed Architecture and Document Formats"
+
+## Aufgabenstellung
+Die detaillierte [Aufgabenstellung](TASK.md) beschreibt die notwendigen Schritte zur Realisierung.
+
+## Implementierung
+
+## Quellen
